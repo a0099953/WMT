@@ -127,7 +127,7 @@
             "location": "[parameters('location')]",
             "dependsOn": [
                 "managedDiskResources",
-                "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]",
+                "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
             ],
             "properties": {
                 "hardwareProfile": {
@@ -202,10 +202,10 @@
                 },
                 "parameters": {
                     "vmName": {
-                        "value": "testvm"
+                        "value": "[parameters('virtualMachineName')]"
                     },
                     "location": {
-                        "value": "eastus"
+                        "value": "[parameters('location')]"
                     }
                 }
             },
@@ -224,10 +224,10 @@
                 },
                 "parameters": {
                     "vmName": {
-                        "value": "testvm"
+                        "value": "[parameters('virtualMachineName')]"
                     },
                     "location": {
-                        "value": "eastus"
+                        "value": "[parameters('location')]"
                     }
                 }
             },
