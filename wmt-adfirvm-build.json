@@ -33,9 +33,10 @@
         },
         "dataDisks": {
             "type": "array",
-            "value": [
+            "defaultValue": [
                 {
                     "lun": 0,
+                    "name": null,
                     "createOption": "attach",
                     "caching": "None",
                     "writeAcceleratorEnabled": false,
@@ -47,7 +48,7 @@
         },
         "dataDiskResources": {
             "type": "array",
-            "value": [
+            "defaultValue": [
                 {
                     "sku": "Premium_LRS",
                     "properties": {
