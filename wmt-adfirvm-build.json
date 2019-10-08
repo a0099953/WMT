@@ -473,10 +473,7 @@
                     "storageAccountKey": "[first(listKeys(variables('diagnosticsStorageAccountId'),'2019-06-01').keys).value]",
                     "storageAccountEndPoint": "https://core.windows.net/"
                 }
-            },
-            "dependsOn": [
-                "Microsoft.CustomScriptExtension-20191007142000"
-            ]
+            }
         }
     ],
     "outputs": {
