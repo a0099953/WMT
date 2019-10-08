@@ -44,8 +44,6 @@
     "variables": {
         "vnetId": "[parameters('virtualNetworkId')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
-        "diagnosticsStorageAccountId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/', 'Microsoft.Storage/storageAccounts/', parameters('diagstorageAccountName'))]",
-        "diagnosticsExtensionName": "Microsoft.Insights.VMDiagnosticsSettings",
         "networkInterfaceName": "[concat(parameters('virtualMachineName'),'-nic')]"
     },
     "resources": [
