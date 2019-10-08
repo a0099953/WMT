@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "DBVnetName": {
+            "type": "string"
+        },
+        "DBVnetRG": {
+            "type": "string"
+        },
+        "DataBricksName": {
+            "type": "string"
+        },
+        "managedResourceGroupName": {
+            "type": "string"
+        },
+        "privateSubnetName": {
+            "defaultValue": "private-subnet",
+            "type": "string"
+        },
+        "publicSubnetName": {
+            "defaultValue": "public-subnet",
+            "type": "string"
+        },
+        "DatabricksSKU": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "vnetId": "[resourceId(parameters('DBVnetRG'),'Microsoft.Network/virtualNetworks', parameters('DBVnetName'))]",
+        "managedResourceGroupName": "[parameters('managedResourceGroupName')]",
+        "managedResourceGroupId": "[concat(subscription().id, '/resourceGroups/', variables('managedResourceGroupName'))]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2018-04-01",
+            "type": "Microsoft.Databricks/workspaces",
+            "location": "[parameters('location')]",
+            "name": "[parameters('DataBricksName')]",
+            "sku": {
+                "name": "[parameters('DatabricksSKU')]"
+            },
+            "comments": "The resource group specified will be locked after deployment.",
+            "properties": {
+                "ManagedResourceGroupId": "[variables('managedResourceGroupId')]",
+                "parameters": {
+                    "customVirtualNetworkId": {
+                    "value": "[variables('vnetId')]"
+                    },
+                    "customPublicSubnetName": {
+                        "value": "[parameters('publicSubnetName')]"
+                    },
+                    "customPrivateSubnetName": {
+                        "value": "[parameters('privateSubnetName')]"
+                    }
+                }
+            }
+        }
+    ]
+}
