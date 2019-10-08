@@ -24,38 +24,6 @@
             "type": "string",
             "defaultValue": "Premium_LRS"
         },
-        "dataDiskName": {
-            "type": "string"
-        },
-        "dataDisks": {
-            "type": "array",
-            "defaultValue": [
-                {
-                    "lun": 0,
-                    "name": null,
-                    "createOption": "attach",
-                    "caching": "None",
-                    "writeAcceleratorEnabled": false,
-                    "id": null,
-                    "storageAccountType": null,
-                    "diskSizeGB": null
-                }
-            ]
-        },
-        "dataDiskResources": {
-            "type": "array",
-            "defaultValue": [
-                {
-                    "sku": "Premium_LRS",
-                    "properties": {
-                        "diskSizeGB": 128,
-                        "creationData": {
-                            "createOption": "empty"
-                        }
-                    }
-                }
-            ]
-        },
         "virtualMachineSize": {
             "type": "string",
             "defaultValue": "Standard_DS2_v2"
@@ -141,24 +109,7 @@
                         "offer": "WindowsServer",
                         "sku": "2019-Datacenter",
                         "version": "latest"
-                    },
-                    "copy": [
-                        {
-                            "name": "dataDisks",
-                            "count": "[length(parameters('dataDisks'))]",
-                            "input": {
-                                "lun": "[parameters('dataDisks')[copyIndex('dataDisks')].lun]",
-                                "createOption": "[parameters('dataDisks')[copyIndex('dataDisks')].createOption]",
-                                "caching": "[parameters('dataDisks')[copyIndex('dataDisks')].caching]",
-                                "writeAcceleratorEnabled": "[parameters('dataDisks')[copyIndex('dataDisks')].writeAcceleratorEnabled]",
-                                "diskSizeGB": "[parameters('dataDisks')[copyIndex('dataDisks')].diskSizeGB]",
-                                "managedDisk": {
-                                    "id": "[coalesce(parameters('dataDisks')[copyIndex('dataDisks')].id, if(equals(parameters('dataDisks')[copyIndex('dataDisks')].name, json('null')), json('null'), resourceId('Microsoft.Compute/disks', parameters('dataDisks')[copyIndex('dataDisks')].name)))]",
-                                    "storageAccountType": "[parameters('dataDisks')[copyIndex('dataDisks')].storageAccountType]"
-                                }
-                            }
-                        }
-                    ]
+                    }
                 },
                 "networkProfile": {
                     "networkInterfaces": [
