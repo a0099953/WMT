@@ -36,7 +36,7 @@
             ]
           },
           "protectedSettings": {
-            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File gatewayInstall.ps1 ', parameters('IRkey'))]"
+            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File wmt-irinstall.ps1 ', parameters('IRkey'))]"
           }
         }
       }
