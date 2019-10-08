@@ -76,7 +76,6 @@
             "apiVersion": "2019-03-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "managedDiskResources",
                 "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
             ],
             "properties": {
