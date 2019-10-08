@@ -71,20 +71,6 @@
             }
         },
         {
-            "name": "[parameters('dataDiskName')]",
-            "type": "Microsoft.Compute/disks",
-            "apiVersion": "2019-03-01",
-            "location": "[parameters('location')]",
-            "properties": "[parameters('dataDiskResources')[copyIndex()].properties]",
-            "sku": {
-                "name": "[parameters('dataDiskResources')[copyIndex()].sku]"
-            },
-            "copy": {
-                "name": "managedDiskResources",
-                "count": "[length(parameters('dataDiskResources'))]"
-            }
-        },
-        {
             "name": "[parameters('virtualMachineName')]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2019-03-01",
