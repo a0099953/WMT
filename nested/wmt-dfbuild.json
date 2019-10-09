@@ -11,7 +11,7 @@
     },
     "resources": [
         {
-            "apiVersion": "2018-02-01-Preview",
+            "apiVersion": "2018-06-01",
             "name": "[parameters('DataFactoryName')]",
             "location": "[parameters('location')]",
             "type": "Microsoft.DataFactory/factories",
